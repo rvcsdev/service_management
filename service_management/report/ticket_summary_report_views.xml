@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ticket_summary_document">
+        <div style="font-size: 16px;">
+            <h1>Ticket Summary</h1>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <h2 t-out="doc.name"/>
+                    <br/>
+                    <h4><b>Ticket Description: </b><span t-out="doc.description"/></h4>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h5><b>Customer: </b><span t-if="doc.customer_id" t-out="doc.customer_id.name"/></h5>
+                    <br/>
+                    <h5><b>Assigned To: </b><span t-if="doc.assigned_user_id" t-out="doc.assigned_user_id.name"/></h5>
+                </div>
+                <div class="col-6">
+                    <h5><b>Request Date: </b><span t-out="doc.date_requested"/></h5>
+                    <br/>
+                    <h5><b>Resolved Date: </b><span t-out="doc.date_resolved"/></h5>
+                    
+                    <t t-if="doc.priority == 'low'">
+                        <br/>
+                        <h5><b>Priority: </b><span>Low</span></h5>
+                    </t>
+                    <t t-if="doc.priority == 'medium'">
+                        <br/>
+                        <h5><b>Priority: </b><span>Medium</span></h5>
+                    </t>
+                    <t t-if="doc.priority == 'high'">
+                        <br/>
+                        <h5><b>Priority: </b><span>High</span></h5>
+                    </t>
+
+                    <t t-if="doc.state == 'new'">
+                        <br/>
+                        <h5><b>Status: </b><span>New</span></h5>
+                    </t>
+                    <t t-if="doc.state == 'inprogress'">
+                        <br/>
+                        <h5><b>Status: </b><span>In Progress</span></h5>
+                    </t>
+                    <t t-if="doc.state == 'resolved'">
+                        <br/>
+                        <h5><b>Status: </b><span>Resolved</span></h5>
+                    </t>  
+                    <t t-if="doc.state == 'Cancelled'">
+                        <br/>
+                        <h5><b>Status: </b><span>Cancelled</span></h5>
+                    </t>                
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="ticket_summary_report">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="service_management.ticket_summary_document"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <record id="action_report_ticket_summary" model="ir.actions.report">
+            <field name="name">Ticket Summary</field>
+            <field name="model">service.ticket</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">service_management.ticket_summary_report</field>
+            <field name="report_file">service_management.ticket_summary_report</field>
+            <field name="binding_model_id" ref="service_management.model_service_ticket"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Ticket Summary'</field>
+        </record>
+    </data>
+
+</odoo>

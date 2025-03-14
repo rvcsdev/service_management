@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- You have been assigned email -->
+        <template id="service_ticket_resolved">
+        <div>
+            Dear <t t-esc="object.customer_id.name"/>,
+            <br/><br/>
+            <span style="margin-top: 8px;">Your ticket <strong><t t-esc="object.name"/></strong> has been resolved.</span>
+        </div>
+        </template>
+
+    </data>
+</odoo>

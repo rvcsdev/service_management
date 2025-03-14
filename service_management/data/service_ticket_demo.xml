@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Service Tickets -->
+        <record id="service_ticket_1" model="service.ticket">
+            <field name="name">Network Connectivity Issue</field>
+            <field name="description">Employee unable to connect to the company network after recent updates.</field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+            <field name="assigned_user_id" ref="base.user_demo"/>
+            <field name="priority">high</field>
+            <field name="state">new</field>
+            <field name="date_requested" eval="DateTime.today()"/>
+        </record>
+
+        <record id="service_ticket_2" model="service.ticket">
+            <field name="name">Software Installation Request</field>
+            <field name="description">Request to install the latest version of Adobe Photoshop on all design department computers.</field>
+            <field name="customer_id" ref="base.res_partner_3"/>
+            <field name="assigned_user_id" ref="base.user_demo"/>
+            <field name="priority">medium</field>
+            <field name="state">inprogress</field>
+            <field name="date_requested" eval="DateTime.now() - relativedelta(days=1)"/>
+        </record>
+
+        <record id="service_ticket_3" model="service.ticket">
+            <field name="name">Printer Malfunction</field>
+            <field name="description">The office printer is not responding and displays a "paper jam" error, even though there’s no paper jam.</field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+            <field name="assigned_user_id" ref="base.user_demo"/>
+            <field name="priority">low</field>
+            <field name="state">resolved</field>
+            <field name="date_requested" eval="DateTime.now() - relativedelta(days=2)"/>
+            <field name="date_resolved" eval="DateTime.now() - relativedelta(days=1)"/>
+        </record>
+
+        <record id="service_ticket_4" model="service.ticket">
+            <field name="name">Email System Issue</field>
+            <field name="description">User is unable to send emails from their work email account, receiving error messages.</field>
+            <field name="customer_id" ref="base.res_partner_4"/>
+            <field name="assigned_user_id" ref="base.user_admin"/>
+            <field name="priority">high</field>
+            <field name="state">inprogress</field>
+            <field name="date_requested" eval="DateTime.now() - relativedelta(days=3)"/>
+        </record>
+
+        <record id="service_ticket_5" model="service.ticket">
+            <field name="name">Database Access Request</field>
+            <field name="description">New employee requires access to the company’s internal database for data entry tasks.</field>
+            <field name="customer_id" ref="base.res_partner_10"/>
+            <field name="assigned_user_id" ref="base.user_admin"/>
+            <field name="priority">medium</field>
+            <field name="state">new</field>
+            <field name="date_requested" eval="DateTime.now()"/>
+        </record>
+
+        <record id="service_ticket_6" model="service.ticket">
+            <field name="name">Employee Laptop Upgrade</field>
+            <field name="description">Employee needs their current laptop upgraded to handle more advanced design software and data processing.</field>
+            <field name="customer_id" ref="base.res_partner_12"/>
+            <field name="assigned_user_id" ref="base.user_admin"/>
+            <field name="priority">high</field>
+            <field name="state">cancelled</field>
+            <field name="date_requested" eval="DateTime.now() - relativedelta(days=5)"/>
+        </record>
+
+        <record id="service_ticket_7" model="service.ticket">
+            <field name="name">Office Wi-Fi Performance</field>
+            <field name="description">Wi-Fi signal strength is weak in certain areas of the office, causing connectivity issues.</field>
+            <field name="customer_id" ref="base.res_partner_4"/>
+            <field name="assigned_user_id" ref="base.user_admin"/>
+            <field name="priority">low</field>
+            <field name="state">new</field>
+            <field name="date_requested" eval="DateTime.now() - relativedelta(days=7)"/>
+        </record>
+
+    </data>
+</odoo>
